@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-app="demoApp">
+    <div class="container" ng-controller="setListController">
+        <div ng-show="currentSong" class=" row">
+            <div class="col-md-1">
+                <button class="btn btn-lg btn-danger" ng-click="playPreviousSong()">
+                    <i class="glyphicon glyphicon-arrow-left"></i>
+                </button>
+            </div>
+            <div class="col-md-10 text-center">
+                <h1>{{currentSong.song.name}}</h1>
+                <iframe width="800" height="600" ng-src="{{currentSong.url}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-lg btn-danger" ng-click="playNextSong()">
+                    <i class="glyphicon glyphicon-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+     
+        <h2>Playlist: ({{playList.length}} songs)</h2>
+        <div class="row">
+            <span class="col-md-4"></span>
+            <div class="col-md-8">
+                <input name="search" class="form-control glyphicon glyphicon-search" type="search" placeholder="search" ng-model="searchFilter" />
+                <br/>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table">
+                <tr class="animate-repeat" ng-repeat="song in playList | filter:searchFilter">
+                    <td>
+                        {{song.name}}
+                    </td>
+                    <td>
+                        {{song.votes}}
+                    </td>
+                    <td>
+                        @*<div class="progress  progress-striped active" style="width: 400px">
+                            <div ng-init="progressStyle = {width: song.percentage  + '%' }"
+                                 class="progress-bar"
+                                 role="progressbar"
+                                 aria-valuenow="{{scope.percentage}}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 ng-style="progressStyle">
+                                {{song.percentage}}
+                            </div>
+                        </div>*@
+                        <div data-ui-Progress-Bar data-percentage="song.percentage" style="width: 400px"></div>
+                    </td>
+                    <td>
+                        <button ng-click="removeSong(song)" class="btn btn-danger "><i class="glyphicon glyphicon-remove"></i></button>
+                        <button ng-click="playSong(song)" class="btn btn-primary"><i class="glyphicon glyphicon-play"></i></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Client/demoApp.js"></script>
+    <script src="~/Client/Directives/uiDirectives.js"></script>
+    <script src="~/Client/Services/setListServices.js"></script>
+    <script src="~/Client/Services/demoServices.js"></script>
+    <script src="~/Client/Controllers/setListController.js"></script>
+}

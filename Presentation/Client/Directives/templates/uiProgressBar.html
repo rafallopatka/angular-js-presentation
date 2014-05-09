@@ -1,0 +1,11 @@
+﻿<div class="progress progress-striped active">
+    <div ng-init="progressStyle = {width: percentage  + '%' }"
+         class="progress-bar"
+         role="progressbar"
+         aria-valuenow="{{percentage}}"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         ng-style="progressStyle">
+        {{percentage}}
+    </div>
+</div>

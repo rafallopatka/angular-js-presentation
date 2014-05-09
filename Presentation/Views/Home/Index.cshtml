@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-app="demoApp">
+    <div class="row" ng-controller="demo1Controller">
+        Zmienna A: {{a}}
+        <br />
+        Zmienna B: {{b}}
+        <br />
+        A + B = {{a + b}}
+        <br />
+        USD: {{a | currency}}
+
+        <br />
+        {{foo }}
+        <br />
+        {{bar}}
+        <br />
+        {{foo | json }}
+        <br />
+        {{bar | json }}
+        <br /><br />
+        <label for="modela">A:</label>
+        <input name="modela" ng-model="model.a" />
+        <br />
+        <label for="modelb">D:</label>
+        <input name="modelb" ng-model="model.b" />
+        <br />
+        A + B = {{ model.a * 1 + model.b * 1}}
+        <br />A + B = {{ compute() }}
+    </div>
+
+
+    <hr />
+
+    <div class="row" ng-controller="demo2Controller">
+        <button ng-click="addItem()">Add new</button>
+        <button ng-click="removeLast()">Remove last</button>
+        <ul>
+            <li ng-repeat="item in array">
+                {{item.firstName}} {{item.lastName}}
+            </li>
+        </ul>
+        
+        <hr/>
+        <span ng-repeat="filter in filters">
+            <label for="">{{filter.name}}</label>
+            <input type="checkbox" ng-model="filter.selected" />
+        </span>
+        <br/>
+        Selected items {{getSelectedFilters().length}} of {{filters.length}}:
+        <hr />
+        <span ng-repeat="color in colors">
+            <label>{{color.name}}</label>
+            <input name="selectedColor" type="radio" ng-model="model.selected" value="{{color.id}}" />
+        </span>
+        <br/>
+        Selected value: {{model.selected}}
+        <hr />
+        <select ng-model="model.selectedItem" ng-options="color.name for color in colors">
+            <option value="" >Select</option>
+        </select>
+        <br/>
+        Selected value: {{model.selectedItem}}
+    </div>
+    <hr/>
+    <hr/>
+
+    <div class="row" ng-controller="demo3Controller">
+        <button ng-click="addItem()">Add new</button>
+        <button ng-click="removeLast()">Remove last</button>
+        <ul>
+            <li ng-repeat="item in array">
+                {{item.firstName}} {{item.lastName}}
+            </li>
+        </ul>
+
+        <hr />
+        <span ng-repeat="filter in filters">
+            <label for="">{{filter.name}}</label>
+            <input type="checkbox" ng-model="filter.selected" />
+        </span>
+        <br />
+        Selected items {{getSelectedFilters().length}} of {{filters.length}}:
+        <hr />
+        <span ng-repeat="color in colors">
+            <label>{{color.name}}</label>
+            <input name="selectedColor" type="radio" ng-model="model.selected" value="{{color.id}}" />
+        </span>
+        <br />
+        Selected value: {{model.selected}}
+        <hr />
+        <select ng-model="model.selectedItem" ng-options="color.name for color in colors">
+            <option value="">Select</option>
+        </select>
+        <br />
+        Selected value: {{model.selectedItem}}
+        
+        <hr/>
+        <select ng-model="model.selectedShadeItem" ng-options="color.name for color in colorShades">
+            <option value="">Select</option>
+        </select>
+        <br />
+        <hr />
+       
+        <span ui-red-class>fooooo</span>
+        <hr />
+        <div ui-v-card firstname="vcard.name" lastname="vcard.surname"></div>
+        <hr/>
+        <ui-v-card firstname="vcard.name" lastname="vcard.surname"></ui-v-card>
+        {{vcard | json}}
+        <hr />
+        <div ui-clock></div>
+        <hr />
+        <input ui-autocomplete source="values" ng-model="model.month" class="form-control" />
+        {{model.month }}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br /><br />
+        <br />
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Client/demoApp.js"></script>
+    <script src="~/Client/Services/setListServices.js"></script>
+    <script src="~/Client/Services/demoServices.js"></script>
+    <script src="~/Client/Directives/uiDirectives.js"></script>
+    <script src="~/Client/Directives/demoDirectives.js"></script>
+    <script src="~/Client/Controllers/demoControllers.js"></script>
+}
